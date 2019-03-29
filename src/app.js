@@ -6,6 +6,7 @@ const forecast = require('./utils/forecast');
 const request = require('request');
 
 const app = express(); //запускаем экспресс
+const port = process.env.PORT || 3000;
 const rootDir = __dirname; // __dirname - папка проекта
 
 //Определяем пути для Express config
@@ -24,23 +25,23 @@ app.use(express.static(publicDirectoryPath));
 
 app.get('', (req, res) => {
   res.render('index', {
-    title: 'Weather main page',
-    name: 'author'
+    title: 'Главная страница',
+    name: 'MIKE'
   })
 });
 
 app.get('/about', (req, res) => {
   res.render('about', {
-    title: 'And about our project',
+    title: 'О нас и о нашем проекте',
     name: 'Corp of LM'
   })
 });
 
 app.get('/help', (req, res) => {
   res.render('help', {
-    title: 'Help page',
+    title: 'Помощь',
     name: 'MIKE',
-    helpText: 'Here is a help for you!'
+    helpText: 'Наша помощь Вам!'
   })
 });
 
@@ -51,7 +52,7 @@ app.get('/weather', (req, res) => {
     })
   }
   const location = req.query.address;
-  geocode(location, (error, {latitude, longtitude, location}={}) => {
+  geocode(location, (error, {latitude, longtitude, location} = {}) => {
     if (error) {
       return res.send({error});
     }
@@ -76,7 +77,7 @@ app.get('/weather', (req, res) => {
 app.get('/products', (req, res) => {
   if (!req.query.search) {
     return res.send({
-      error: 'You must provide a search term'
+      error: 'Необходимо ввести адрес!'
     })
   }
 
@@ -90,19 +91,19 @@ app.get('/help/*', (req, res) => {
   res.render('404', {
     title: 'Oops 404 page!',
     name: 'MIKE',
-    errorMessage: 'Help article not found'
+    errorMessage: 'Не найден раздел помощи'
   });
 });
 
 app.get('*', (req, res) => {
   res.render('404', {
-    title: 'Oops 404 page!',
+    title: 'Oops 404!',
     name: 'MIKE',
-    errorMessage: 'Page not found!'
+    errorMessage: 'Страница не найден!'
   });
 });
 
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000.')
+app.listen(port, () => {
+  console.log('Сервер на ' + port)
 });
