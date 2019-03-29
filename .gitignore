@@ -1,2 +1,4 @@
 node_modules/
 .idea/
+web-server-rsa-key
+web-server-rsa-key.pub
