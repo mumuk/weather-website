@@ -95,6 +95,7 @@ app.get('/help/*', (req, res) => {
   });
 });
 
+
 app.get('*', (req, res) => {
   res.render('404', {
     title: 'Oops 404!',
@@ -103,7 +104,6 @@ app.get('*', (req, res) => {
   });
 });
 
-
 app.listen(port, () => {
-  console.log('Сервер на ' + port)
+  console.log('Сервер на ' + port +' порту')
 });
