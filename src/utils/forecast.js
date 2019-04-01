@@ -11,7 +11,9 @@ const forecast = (latitude, longtitude, callback) => {
       callback('Не найдена локация!', undefined)
     } else {
       callback(undefined, (
-        `Температура: ${body.currently.temperature}, ${body.daily.data[0].summary} Вероятность дождя -  ${body.currently.precipProbability * 100}%`)
+        `Температура: ${body.currently.temperature}, ${body.daily.data[0].summary} 
+        Вероятность дождя -  ${body.currently.precipProbability * 100}%
+        Видимость - ${body.currently.visibility}м`)
       )
     }
   })
